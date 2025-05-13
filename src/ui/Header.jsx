@@ -18,7 +18,7 @@ function Header() {
   }
 
   return (
-    <div className="flex fixed left-0 top-0 border-b border-gray-50 right-0 bg-[#292A2D] justify-between items-center px-4">
+    <div className="flex fixed left-0 top-0 border-b border-gray-50 right-0 bg-[#292A2D] justify-between items-center px-4 sm:px-7 lg:px-12">
       <Link onClick={handleClick} to="/">
         <img className="h-[5.2rem] " src="/rivo.png" />
       </Link>

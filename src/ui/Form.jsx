@@ -12,7 +12,7 @@ function Submitchat() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!active.trim() || isLoading) return; // prevent empty submissions and multiple submits
+    if (!active.trim() || isLoading) return;
 
     setIsLoading(true);
 

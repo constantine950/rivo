@@ -3,10 +3,10 @@ import Header from "./Header";
 
 function AppLayOut() {
   return (
-    <div className="h-screen bg-[#292A2D]">
+    <div className="h-full bg-[#292A2D]">
       <Header />
 
-      <main>
+      <main className="pt-20">
         <Outlet />
       </main>
     </div>
