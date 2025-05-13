@@ -1,9 +1,10 @@
 import Submitchat from "./Form";
 import { useAppContext } from "../context/AppContext.jsx";
 import { useRef, useEffect } from "react";
+import Spinner from "./Spinner.jsx";
 
 function ChatUI() {
-  const { messages } = useAppContext();
+  const { messages, isLoading } = useAppContext();
   const messageEndRef = useRef(null);
 
   useEffect(() => {
@@ -25,13 +26,21 @@ function ChatUI() {
                 message.isUser ? "bg-[#414158]" : ""
               } text-white px-2.5 py-2 rounded-lg`}
             >
-              {message.img ? (
-                <img className="h-5 w-5" src={message.img} />
-              ) : null}
+              {message.img && <img className="h-5 w-5" src={message.img} />}
               {message.text}
             </div>
           </div>
         ))}
+
+        {/* Show spinner at the bottom when loading */}
+        {isLoading && (
+          <div className="flex justify-start">
+            <div className="text-white px-2.5 py-2 rounded-lg">
+              <Spinner />
+            </div>
+          </div>
+        )}
+
         <div ref={messageEndRef} />
       </div>
 

@@ -3,6 +3,7 @@ import { createContext, useContext, useState } from "react";
 const AppContext = createContext();
 
 export default function AppContextProvider({ children }) {
+  const [isLoading, setIsLoading] = useState(false);
   const [active, setActive] = useState("");
   const [messages, setMessages] = useState([
     {
@@ -14,7 +15,16 @@ export default function AppContextProvider({ children }) {
   ]);
 
   return (
-    <AppContext value={{ active, setActive, messages, setMessages }}>
+    <AppContext
+      value={{
+        active,
+        setActive,
+        messages,
+        setMessages,
+        isLoading,
+        setIsLoading,
+      }}
+    >
       {children}
     </AppContext>
   );

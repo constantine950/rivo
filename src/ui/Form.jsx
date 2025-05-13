@@ -2,38 +2,52 @@ import chatWithLlama from "../api/chat";
 import { useAppContext } from "../context/AppContext";
 import Button from "./Button";
 import Input from "./Input";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
+import Spinner from "./Spinner";
 
 function Submitchat() {
-  const { setActive, setMessages, active } = useAppContext();
+  const { setActive, setMessages, active, isLoading, setIsLoading } =
+    useAppContext();
   const navigate = useNavigate();
-  const pathname = useLocation();
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (!active.trim() || isLoading) return; // prevent empty submissions and multiple submits
+
+    setIsLoading(true);
+
+    // Add user message
     setMessages((prev) => [
       ...prev,
       { id: Date.now(), text: active, isUser: true },
     ]);
 
     setActive("");
+    navigate("/chat");
 
-    const chat = await chatWithLlama(active);
-    setTimeout(() => {
+    try {
+      const chat = await chatWithLlama(active);
       setMessages((prev) => [
         ...prev,
-        { id: Date.now() + 1, text: chat, img: "rivo.png", isUser: false },
+        {
+          id: Date.now() + 1,
+          text: chat,
+          img: "rivo.png",
+          isUser: false,
+        },
       ]);
-    }, 2000);
-    if (pathname === "/chat") return;
-    navigate("/chat");
+    } catch (error) {
+      console.error("API call failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="bg-[#404045] m-6 flex justify-between items-center px-4 py-5 mx-5 rounded-xl">
         <Input />
-        <Button />
+        {isLoading ? <Spinner /> : <Button />}
       </div>
     </form>
   );
