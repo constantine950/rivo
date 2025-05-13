@@ -6,7 +6,7 @@ function AppLayOut() {
     <div className="h-full bg-[#292A2D]">
       <Header />
 
-      <main className="pt-20">
+      <main className="pt-20 overflow-hidden">
         <Outlet />
       </main>
     </div>

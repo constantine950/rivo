@@ -18,7 +18,7 @@ function ChatUI() {
       <div className="flex flex-col h-screen">
         <div
           className={`flex-1 p-4 space-y-4 overflow-y-auto ${
-            messages.length > 2 ? "pb-[20%]" : ""
+            messages.length > 2 ? "pb-[45%]" : ""
           } `}
         >
           {messages.map((message) => (
