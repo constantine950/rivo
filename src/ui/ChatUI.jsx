@@ -15,7 +15,7 @@ function ChatUI() {
 
   return (
     <div className="md:mx-36 xl:mx-80">
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-svw">
         <div
           className={`flex-1 p-4 space-y-4 overflow-y-auto ${
             messages.length > 2 ? "pb-[45%]" : ""
