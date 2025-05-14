@@ -14,11 +14,11 @@ function ChatUI() {
   }, [messages]);
 
   return (
-    <div className="md:mx-36 xl:mx-80">
-      <div className="flex flex-col h-svw">
+    <div className="md:mx-36 xl:mx-80 ">
+      <div className="flex flex-col bg-[#292A2D] h-screen">
         <div
           className={`flex-1 p-4 space-y-4 overflow-y-auto ${
-            messages.length > 2 ? "pb-[45%]" : ""
+            messages.length > 2 ? "pb-40" : ""
           } `}
         >
           {messages.map((message) => (
